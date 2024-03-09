@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Hub - Scientific Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #06f3a8;
+            color: #fff;
+            padding: 1em;
+            text-align: left;
+        }
+
+        nav {
+            display: flex;
+            justify-content: left;
+            background-color: #3e05e8;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 1.5em;
+            background-color: #f2f2f2;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            width: 23%;
+            padding: 15px;
+            font-size: 1.2em;
+            margin: 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.operator {
+            background-color: #FF8C00;
+            color: #fff;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solution Hub</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="calculator.html">Calculators</a>
+        <a href="currency_converter.html">Converters</a>
+        <a href="about_section.html">About</a>
+    </nav>
+
+    <div class="container">
+        <h2>Scientific Calculator</h2>
+
+        <div id="calculator">
+            <input type="text" id="display" readonly>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="clearLastEntry()">⌫</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="applyFunction('sqrt')">√</button>
+            <button onclick="applyFunction('power')">x²</button>
+            <button onclick="applyFunction('sin')">sin</button>
+            <button onclick="applyFunction('cos')">cos</button>
+            <button onclick="applyFunction('tan')">tan</button>
+            <button onclick="applyFunction('log')">log</button>
+            <button onclick="applyFunction('exp')">exp</button>
+            <button onclick="applyFunction('pi')">π</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Solution Hub. All rights reserved.
+    </footer>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearLastEntry() {
+            const currentValue = document.getElementById('display').value;
+            document.getElementById('display').value = currentValue.substring(0, currentValue.length - 1);
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        function applyFunction(func) {
+            const currentValue = document.getElementById('display').value;
+            switch (func) {
+                case 'sqrt':
+                    document.getElementById('display').value = Math.sqrt(eval(currentValue));
+                    break;
+                case 'power':
+                    document.getElementById('display').value = Math.pow(eval(currentValue), 2);
+                    break;
+                case 'sin':
+                    document.getElementById('display').value = Math.sin(eval(currentValue));
+                    break;
+                case 'cos':
+                    document.getElementById('display').value = Math.cos(eval(currentValue));
+                    break;
+                case 'tan':
+                    document.getElementById('display').value = Math.tan(eval(currentValue));
+                    break;
+                case 'log':
+                    document.getElementById('display').value = Math.log10(eval(currentValue));
+                    break;
+                case 'exp':
+                    document.getElementById('display').value = Math.exp(eval(currentValue));
+                    break;
+                case 'pi':
+                    document.getElementById('display').value = Math.PI;
+                    break;
+            }
+        }
+
+        // Add event listener for external keyboard
+        document.addEventListener('keydown', function (event) {
+            const key = event.key;
+
+            // Check if the pressed key is a number, operator, or special key
+            if (/\d/.test(key) || ['+', '-', '*', '/', '.', 'Enter'].includes(key)) {
+                event.preventDefault();
+                if (key === 'Enter') {
+                    calculate();
+                } else {
+                    appendToDisplay(key);
+                }
+            } else if (key === 'Backspace') {
+                event.preventDefault();
+                clearLastEntry();
+            }
+        });
+    </script>
+</body>
+</html>

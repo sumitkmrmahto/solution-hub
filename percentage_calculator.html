@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Hub - Percentage Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #06f3a8;
+            color: #fff;
+            padding: 1em;
+            text-align: left;
+        }
+
+        nav {
+            display: flex;
+            justify-content: left;
+            background-color: #3e05e8;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 1.2em;
+            background-color: #f2f2f2;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            margin: 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .calculate-btn:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solution Hub</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="calculator.html">Calculators</a>
+        <a href="percentage_calculator.html">Percentage Calculator</a>
+        <a href="about_section.html">About</a>
+    </nav>
+
+    <div class="container">
+        <h2>Percentage Calculator</h2>
+
+        <div id="calculator">
+            <label for="number">Number:</label>
+            <input type="number" id="number" placeholder="Enter number">
+
+            <label for="percentage">Percentage:</label>
+            <input type="number" id="percentage" placeholder="Enter percentage">
+
+            <button class="calculate-btn" onclick="calculate()">Calculate</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Solution Hub. All rights reserved.
+    </footer>
+
+    <script>
+        function calculate() {
+            const number = parseFloat(document.getElementById('number').value) || 0;
+            const percentage = parseFloat(document.getElementById('percentage').value) || 0;
+
+            const result = (percentage / 100) * number;
+
+            // Display the result
+            document.getElementById('result').innerHTML = `Result: ${result.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

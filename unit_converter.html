@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Hub - Unit Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #06f3a8;
+            color: #fff;
+            padding: 1em;
+            text-align: left;
+        }
+
+        nav {
+            display: flex;
+            justify-content: left;
+            background-color: #3e05e8;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #04f71c61;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #converter {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 1.2em;
+            background-color: #f2f2f2;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .convert-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            margin: 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border: 1px solid #03f127;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .convert-btn:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solution Hub</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="calculator.html">Calculators</a>
+        <a href="unit_converter.html">Unit Converter</a>
+        <a href="about_section.html">About</a>
+    </nav>
+
+    <div class="container">
+        <h2>Unit Converter</h2>
+
+        <div id="converter">
+            <input type="number" id="value" placeholder="Enter value">
+            <select id="fromUnit">
+                <option value="meter">Meter</option>
+                <option value="kilometer">Kilometer</option>
+                <option value="centimeter">Centimeter</option>
+                <option value="mile">Mile</option>
+                <option value="yard">Yard</option>
+                <option value="foot">Foot</option>
+                <option value="inch">Inch</option>
+                <option value="liter">Liter</option>
+                <option value="milliliter">Milliliter</option>
+                <option value="gallon">Gallon</option>
+                <!-- Add more unit options as needed -->
+            </select>
+
+            <select id="toUnit">
+                <option value="meter">Meter</option>
+                <option value="kilometer">Kilometer</option>
+                <option value="centimeter">Centimeter</option>
+                <option value="mile">Mile</option>
+                <option value="yard">Yard</option>
+                <option value="foot">Foot</option>
+                <option value="inch">Inch</option>
+                <option value="liter">Liter</option>
+                <option value="milliliter">Milliliter</option>
+                <option value="gallon">Gallon</option>
+                <!-- Add more unit options as needed -->
+            </select>
+
+            <button class="convert-btn" onclick="convert()">Convert</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Solution Hub. All rights reserved.
+    </footer>
+
+    <script>
+        function convert() {
+            const value = parseFloat(document.getElementById('value').value) || 0;
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+
+            const result = convertUnit(value, fromUnit, toUnit);
+
+            // Display the result
+            document.getElementById('result').innerHTML = `Result: ${result.toFixed(2)} ${toUnit}`;
+        }
+
+        // Conversion functions
+        function convertUnit(value, fromUnit, toUnit) {
+            // Implement conversion logic for each unit pair
+            switch (`${fromUnit}-${toUnit}`) {
+                case 'meter-kilometer':
+                    return value / 1000;
+                case 'meter-centimeter':
+                    return value * 100;
+                case 'kilometer-meter':
+                    return value*1000;    
+                case 'meter-mile':
+                    return value / 1609.34;
+                case 'meter-yard':
+                    return value * 1.09361;
+                case 'meter-foot':
+                    return value * 3.28084;
+                case 'meter-inch':
+                    return value * 39.3701;
+                case 'liter-milliliter':
+                    return value * 1000;
+                case 'liter-gallon':
+                    return value / 3.78541;
+                // Add more cases for additional unit pairs
+                default:
+                    return value;
+            }
+        }
+    </script>
+</body>
+</html>
